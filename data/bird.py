@@ -13,8 +13,8 @@ class Birds(Dataset):
       def __init__(self, root=MyPath.db_root_dir('bird'), split='train', transform=None):
         super(Birds, self).__init__()
 
-
-
+        self.split = split
+        
         self.transform = transform
 
         self.resize = tf.Resize(256)
