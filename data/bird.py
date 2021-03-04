@@ -66,18 +66,18 @@ class Birds(Dataset):
 
         return out
 
-      def __len__(self):
-          return len(self.Files)
+    def __len__(self):
+        return len(self.Files)
 
-      def label_func(self, fname):
-          return re.match(r'^(.*)_\d+_\d+.jpg$', fname.name).groups()[0]
+    def label_func(self, fname):
+        return re.match(r'^(.*)_\d+_\d+.jpg$', fname.name).groups()[0]
 
-      def splitter(self, fname):
-          return int(re.match(r'\w+_(.*)_\d+.jpg$', fname.name).groups()[0])
+    def splitter(self, fname):
+        return int(re.match(r'\w+_(.*)_\d+.jpg$', fname.name).groups()[0])
 
-      def get_image(self, index):
-          path, target = self.imgs[index]
-          with open(path, 'rb') as f:
-              img = Image.open(f).convert('RGB')
-          img = self.resize(img)
-          return img
+    def get_image(self, index):
+        path, target = self.imgs[index]
+        with open(path, 'rb') as f:
+            img = Image.open(f).convert('RGB')
+        img = self.resize(img)
+        return img
