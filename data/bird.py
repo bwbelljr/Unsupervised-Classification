@@ -10,7 +10,7 @@ import re
 from utils.mypath import MyPath
 
 class Birds(Dataset):
-      def __init__(self, root=MyPath.db_root_dir('bird'), split='train', transform=None):
+    def __init__(self, root=MyPath.db_root_dir('bird'), split='train', transform=None):
         super(Birds, self).__init__()
 
         self.split = split
@@ -38,10 +38,7 @@ class Birds(Dataset):
           self.file_index = [i['1'] for i in self.df.to_dict('records') if i['0']==0]
           self.Files = [i for i in self.files if self.splitter(i) in self.file_index]
 
-
-
-
-      def __getitem__(self, index):
+    def __getitem__(self, index):
         """
         Args:
             index (int): Index
@@ -69,19 +66,18 @@ class Birds(Dataset):
 
         return out
 
+      def __len__(self):
+          return len(self.Files)
 
       def label_func(self, fname):
-        return re.match(r'^(.*)_\d+_\d+.jpg$', fname.name).groups()[0]
+          return re.match(r'^(.*)_\d+_\d+.jpg$', fname.name).groups()[0]
 
       def splitter(self, fname):
-        return int(re.match(r'\w+_(.*)_\d+.jpg$', fname.name).groups()[0])
+          return int(re.match(r'\w+_(.*)_\d+.jpg$', fname.name).groups()[0])
 
       def get_image(self, index):
-        path, target = self.imgs[index]
-        with open(path, 'rb') as f:
-            img = Image.open(f).convert('RGB')
-        img = self.resize(img)
-        return img
-
-        def __len__(self):
-            return len(self.Files)
+          path, target = self.imgs[index]
+          with open(path, 'rb') as f:
+              img = Image.open(f).convert('RGB')
+          img = self.resize(img)
+          return img
