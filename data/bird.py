@@ -14,7 +14,7 @@ class Birds(Dataset):
         super(Birds, self).__init__()
 
         self.split = split
-        
+
         self.transform = transform
 
         self.resize = tf.Resize(256)
@@ -82,3 +82,6 @@ class Birds(Dataset):
             img = Image.open(f).convert('RGB')
         img = self.resize(img)
         return img
+
+        def __len__(self):
+            return len(self.Files)
