@@ -14,7 +14,7 @@ criterion_kwargs:
    apply_class_balancing: False
 
 # Model
-backbone: resnet18
+backbone: resnet50
 num_heads: 1
 
 # Dataset
