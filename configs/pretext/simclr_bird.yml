@@ -8,8 +8,8 @@ model_kwargs:
    features_dim: 128
 
 # Dataset
-train_db_name: stl-10
-val_db_name: stl-10
+train_db_name: bird
+val_db_name: bird
 num_classes: 200
 
 # Loss
