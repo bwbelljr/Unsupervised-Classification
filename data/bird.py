@@ -7,6 +7,7 @@ from fastai.data.transforms import get_image_files
 from fastai.data.external import untar_data,URLs
 from fastai.vision.all import *
 import re
+from utils.mypath import MyPath
 
 class Birds(Dataset):
       def __init__(self, root=MyPath.db_root_dir('bird'), split='train', transform=None):
@@ -59,11 +60,11 @@ class Birds(Dataset):
 
         img_size = img.size
         img = self.resize(img)
-        
+
 
         if self.transform is not None:
             img = self.transform(img)
-  
+
         out = {'image': img, 'target': target, 'meta': {'im_size': img_size, 'index': index}}
 
         return out
@@ -71,22 +72,13 @@ class Birds(Dataset):
 
       def label_func(self, fname):
         return re.match(r'^(.*)_\d+_\d+.jpg$', fname.name).groups()[0]
-      
+
       def splitter(self, fname):
         return int(re.match(r'\w+_(.*)_\d+.jpg$', fname.name).groups()[0])
-      
+
       def get_image(self, index):
         path, target = self.imgs[index]
         with open(path, 'rb') as f:
             img = Image.open(f).convert('RGB')
-        img = self.resize(img) 
+        img = self.resize(img)
         return img
-
-
-
-
-
-
-
-
-

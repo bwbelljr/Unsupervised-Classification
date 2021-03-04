@@ -48,7 +48,7 @@ def get_model(p, pretrain_path=None):
             from models.resnet_cifar import resnet18
             backbone = resnet18()
 
-        elif p['train_db_name'] == 'stl-10':
+        elif p['train_db_name'] in ['stl-10', 'bird']:
             from models.resnet_stl import resnet18
             backbone = resnet18()
 
@@ -65,7 +65,7 @@ def get_model(p, pretrain_path=None):
             backbone = resnet50()
 
         # added birds with resnet50
-        elif p['train_db_name'] in ['birds', 'mnist']:
+        elif p['train_db_name'] in ['bird', 'mnist']:
             from models.resnet import resnet50
             backbone = resnet50()
 
@@ -155,8 +155,8 @@ def get_train_dataset(p, transform, to_augmented_dataset=False,
         dataset = ImageNetSubset(subset_file=subset_file, split='train', transform=transform)
 
     # added birds train dataset
-    elif p['train_db_name'] == 'birds':
-        from data.imagenet import Birds
+    elif p['train_db_name'] == 'bird':
+        from data.bird import Birds
         dataset = Birds(split='train', transform=transform)
 
     else:
@@ -203,8 +203,8 @@ def get_val_dataset(p, transform=None, to_neighbors_dataset=False):
         dataset = ImageNetSubset(subset_file=subset_file, split='val', transform=transform)
 
     # added birds test dataset
-    elif p['val_db_name'] == 'birds':
-        from data.imagenet import Birds
+    elif p['val_db_name'] == 'bird':
+        from data.bird import Birds
         dataset = Birds(split='test', transform=transform)
 
     else:

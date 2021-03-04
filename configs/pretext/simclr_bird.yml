@@ -1,23 +1,35 @@
-# setup
-setup: scan
-
-# Loss
-criterion: scan
-criterion_kwargs:
-   entropy_weight: 5.0
+# Setup
+setup: simclr
 
 # Model
-backbone: resnet50
-
-# Weight update
-update_cluster_head_only: True # Train only linear layer during SCAN
-num_heads: 10 # Use multiple heads
+backbone: resnet18
+model_kwargs:
+   head: mlp
+   features_dim: 128
 
 # Dataset
-train_db_name: birds
-val_db_name: birds
+train_db_name: stl-10
+val_db_name: stl-10
 num_classes: 200
-num_neighbors: 50
+
+# Loss
+criterion: simclr
+criterion_kwargs:
+   temperature: 0.1
+
+# Hyperparameters
+epochs: 5
+optimizer: sgd
+optimizer_kwargs:
+   nesterov: False
+   weight_decay: 0.0001
+   momentum: 0.9
+   lr: 0.4
+scheduler: cosine
+scheduler_kwargs:
+   lr_decay_rate: 0.1
+batch_size: 48
+num_workers: 8
 
 # Transformations
 augmentation_strategy: simclr
@@ -43,17 +55,3 @@ transformation_kwargs:
    normalize:
       mean: [0.485, 0.456, 0.406]
       std: [0.229, 0.224, 0.225]
-
-# Hyperparameters
-optimizer: sgd
-optimizer_kwargs:
-   lr: 5.0
-   weight_decay: 0.0000
-   nesterov: False
-   momentum: 0.9
-epochs: 10
-batch_size: 32
-num_workers: 8
-
-# Scheduler
-scheduler: constant

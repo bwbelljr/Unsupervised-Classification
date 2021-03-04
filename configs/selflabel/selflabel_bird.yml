@@ -14,12 +14,12 @@ criterion_kwargs:
    apply_class_balancing: False
 
 # Model
-backbone: resnet50
+backbone: resnet18
 num_heads: 1
 
 # Dataset
-train_db_name: birds
-val_db_name: birds
+train_db_name: bird
+val_db_name: bird
 num_classes: 200
 
 # Transformations
@@ -48,8 +48,8 @@ optimizer_kwargs:
    weight_decay: 0.0
    nesterov: False
    momentum: 0.9
-epochs: 10
-batch_size: 32
+epochs: 5
+batch_size: 48
 num_workers: 8
 
 # Scheduler
