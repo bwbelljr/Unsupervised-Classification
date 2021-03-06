@@ -2,7 +2,7 @@
 setup: simclr
 
 # Model
-backbone: resnet50
+backbone: resnet18
 model_kwargs:
    head: mlp
    features_dim: 128
@@ -18,13 +18,13 @@ criterion_kwargs:
    temperature: 0.1
 
 # Hyperparameters
-epochs: 100
+epochs: 500
 optimizer: sgd
 optimizer_kwargs:
    nesterov: False
    weight_decay: 0.0001
    momentum: 0.9
-   lr: 0.03
+   lr: 0.4
 scheduler: cosine
 scheduler_kwargs:
    lr_decay_rate: 0.1
