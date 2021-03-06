@@ -7,7 +7,7 @@ criterion_kwargs:
    entropy_weight: 5.0
 
 # Model
-backbone: resnet50
+backbone: resnet18
 
 # Weight update
 update_cluster_head_only: True # Train only linear layer during SCAN
@@ -51,7 +51,7 @@ optimizer_kwargs:
    weight_decay: 0.0000
    nesterov: False
    momentum: 0.9
-epochs: 5
+epochs: 100
 batch_size: 48
 num_workers: 8
 

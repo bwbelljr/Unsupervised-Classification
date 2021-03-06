@@ -48,12 +48,16 @@ def get_model(p, pretrain_path=None):
             from models.resnet_cifar import resnet18
             backbone = resnet18()
 
-        elif p['train_db_name'] in ['stl-10', 'bird']:
+        elif p['train_db_name'] in ['stl-10']:
             from models.resnet_stl import resnet18
             backbone = resnet18()
 
         elif p['train_db_name'] == 'mnist':
             from models.resnet_mnist import resnet18
+            backbone = resnet18()
+
+        elif p['train_db_name'] == ['bird']:
+            from models.resnet import resnet18
             backbone = resnet18()
 
         else:
