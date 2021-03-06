@@ -56,7 +56,7 @@ def get_model(p, pretrain_path=None):
             from models.resnet_mnist import resnet18
             backbone = resnet18()
 
-        elif p['train_db_name'] == ['bird']:
+        elif p['train_db_name'] == 'bird':
             from models.resnet import resnet18
             backbone = resnet18()
 
